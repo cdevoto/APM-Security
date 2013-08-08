@@ -1,0 +1,88 @@
+<result xsi:type="ns1:hashMap" enc:arrayType="ns1:mapEntry[12]">
+	<item xsi:type="ns1:mapEntry">
+		<key xsi:type="xsd:string">objectclass</key>
+		<value xsi:type="ns1:hashSet" enc:arrayType="xsd:anyType[5]">
+			<item xsi:type="xsd:string">person</item>
+			<item xsi:type="xsd:string">inetorgperson</item>
+			<item xsi:type="xsd:string">organizationalperson</item>
+			<item xsi:type="xsd:string">inetUser</item>
+			<item xsi:type="xsd:string">top</item>
+		</value>
+	</item>
+	<item xsi:type="ns1:mapEntry">
+		<key xsi:type="xsd:string">givenname</key>
+		<value xsi:type="ns1:hashSet" enc:arrayType="xsd:anyType[1]">
+			<item xsi:type="xsd:string">Carlos</item>
+		</value>
+	</item>
+	<item xsi:type="ns1:mapEntry">
+		<key xsi:type="xsd:string">sun-fm-saml2-nameid-infokey</key>
+		<value xsi:type="ns1:hashSet" enc:arrayType="xsd:anyType[3]">
+			<item xsi:type="xsd:string">http:&#47;&#47;localhost.outageanalyzer.com:7080&#47;openam|carlos|carlos.devoto@compuware.com
+			</item>
+			<item xsi:type="xsd:string">http:&#47;&#47;localhost.outageanalyzer.com:7080&#47;openam|apmPortal|carlos.devoto@compuware.com
+			</item>
+			<item xsi:type="xsd:string">http:&#47;&#47;localhost.outageanalyzer.com:7080&#47;openam|outageAnalyzer|carlos.devoto@compuware.com
+			</item>
+		</value>
+	</item>
+	<item xsi:type="ns1:mapEntry">
+		<key xsi:type="xsd:string">sn</key>
+		<value xsi:type="ns1:hashSet" enc:arrayType="xsd:anyType[1]">
+			<item xsi:type="xsd:string">Devoto</item>
+		</value>
+	</item>
+	<item xsi:type="ns1:mapEntry">
+		<key xsi:type="xsd:string">sun-fm-saml2-nameid-info</key>
+		<value xsi:type="ns1:hashSet" enc:arrayType="xsd:anyType[3]">
+			<item xsi:type="xsd:string">http:&#47;&#47;localhost.outageanalyzer.com:7080&#47;openam|carlos|carlos.devoto@compuware.com|http:&#47;&#47;localhost.outageanalyzer.com:7080&#47;openam|urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress|null|null|IDPRole|false
+			</item>
+			<item xsi:type="xsd:string">http:&#47;&#47;localhost.outageanalyzer.com:7080&#47;openam|apmPortal|carlos.devoto@compuware.com|http:&#47;&#47;localhost.outageanalyzer.com:7080&#47;openam|urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress|null|null|IDPRole|false
+			</item>
+			<item xsi:type="xsd:string">http:&#47;&#47;localhost.outageanalyzer.com:7080&#47;openam|outageAnalyzer|carlos.devoto@compuware.com|http:&#47;&#47;localhost.outageanalyzer.com:7080&#47;openam|urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress|null|outageAnalyzer|IDPRole|false
+			</item>
+		</value>
+	</item>
+	<item xsi:type="ns1:mapEntry">
+		<key xsi:type="xsd:string">uid</key>
+		<value xsi:type="ns1:hashSet" enc:arrayType="xsd:anyType[1]">
+			<item xsi:type="xsd:string">test</item>
+		</value>
+	</item>
+	<item xsi:type="ns1:mapEntry">
+		<key xsi:type="xsd:string">userpassword</key>
+		<value xsi:type="ns1:hashSet" enc:arrayType="xsd:anyType[1]">
+			<item xsi:type="xsd:string">W6ph5Mm5Pz8GgiULbPgzG37mj9g=</item>
+		</value>
+	</item>
+	<item xsi:type="ns1:mapEntry">
+		<key xsi:type="xsd:string">inetuserstatus</key>
+		<value xsi:type="ns1:hashSet" enc:arrayType="xsd:anyType[1]">
+			<item xsi:type="xsd:string">Active</item>
+		</value>
+	</item>
+	<item xsi:type="ns1:mapEntry">
+		<key xsi:type="xsd:string">cn</key>
+		<value xsi:type="ns1:hashSet" enc:arrayType="xsd:anyType[1]">
+			<item xsi:type="xsd:string">Carlos P. Devoto</item>
+		</value>
+	</item>
+	<item xsi:type="ns1:mapEntry">
+		<key xsi:type="xsd:string">mail</key>
+		<value xsi:type="ns1:hashSet" enc:arrayType="xsd:anyType[1]">
+			<item xsi:type="xsd:string">carlos.devoto@compuware.com</item>
+		</value>
+	</item>
+	<item xsi:type="ns1:mapEntry">
+		<key xsi:type="xsd:string">postaladdress</key>
+		<value xsi:type="ns1:hashSet" enc:arrayType="xsd:anyType[1]">
+			<item xsi:type="xsd:string">14996 Robinwood Dr.</item>
+		</value>
+	</item>
+	<item xsi:type="ns1:mapEntry">
+		<key xsi:type="xsd:string">telephonenumber</key>
+		<value xsi:type="ns1:hashSet" enc:arrayType="xsd:anyType[1]">
+			<item xsi:type="xsd:string">3132270966</item>
+		</value>
+	</item>
+</result>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/JiraRepo/lib/axis.jar"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.apache.axis.wsdl.WSDL2Java"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-o src -p com.compuware.identity.authentication.repo.jira.webservice jirasoapservice_v2.wsdl"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="JiraRepo"/>
+</launchConfiguration>

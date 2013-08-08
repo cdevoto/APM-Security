@@ -1,0 +1,86 @@
+<SubSchema i18nKey="a10000" inheritance="multiple" maintainPriority="no"
+	name="cpwrFiles" supportsApplicableOrganization="no" validate="yes">
+	<AttributeSchema cosQualifier="default" isSearchable="no"
+		name="RequiredValueValidator" syntax="string" type="validator">
+		<DefaultValues>
+			<Value>com.sun.identity.sm.RequiredValueValidator</Value>
+		</DefaultValues>
+	</AttributeSchema>
+	<AttributeSchema any="required" cosQualifier="default"
+		i18nKey="a10010" isSearchable="no" name="sunIdRepoClass" syntax="string"
+		type="single" validator="RequiredValueValidator">
+		<DefaultValues>
+			<Value>com.compuware.identity.authentication.repo.jira.FilesRepo</Value>
+		</DefaultValues>
+	</AttributeSchema>
+	<AttributeSchema cosQualifier="default" i18nKey="a10020"
+		isSearchable="no" name="cpwrFilesIdRepoDirectory" syntax="string" type="single"
+		validator="RequiredValueValidator">
+		<DefaultValues>
+			<Value>&#47;Users&#47;bfhcpd0&#47;openam&#47;openam&#47;idRepo&#47;flatfiles
+			</Value>
+		</DefaultValues>
+	</AttributeSchema>
+	<AttributeSchema cosQualifier="default" i18nKey="a10022"
+		isSearchable="no" name="cpwrFilesMonitorForChanges" syntax="boolean"
+		type="single">
+		<DefaultValues>
+			<Value>true</Value>
+		</DefaultValues>
+	</AttributeSchema>
+	<AttributeSchema cosQualifier="default" i18nKey="a10024"
+		isSearchable="no" name="cpwrFilesMonitoringTime" syntax="string" type="single">
+		<DefaultValues>
+			<Value>1</Value>
+		</DefaultValues>
+	</AttributeSchema>
+	<AttributeSchema cosQualifier="default" i18nKey="a10026"
+		isSearchable="no" name="cpwrFilesObjectClasses" syntax="string" type="list">
+		<DefaultValues>
+			<Value>inetorgperson</Value>
+			<Value>inetUser</Value>
+			<Value>organizationalperson</Value>
+			<Value>person</Value>
+			<Value>top</Value>
+		</DefaultValues>
+	</AttributeSchema>
+	<AttributeSchema cosQualifier="default" i18nKey="a10030"
+		isSearchable="no" name="cpwrFilesPasswordAttr" syntax="string" type="single">
+		<DefaultValues>
+			<Value>userPassword</Value>
+		</DefaultValues>
+	</AttributeSchema>
+	<AttributeSchema cosQualifier="default" i18nKey="a10040"
+		isSearchable="no" name="cpwrFilesStatusAttr" syntax="string" type="single">
+		<DefaultValues>
+			<Value>inetUserStatus</Value>
+		</DefaultValues>
+	</AttributeSchema>
+	<AttributeSchema cosQualifier="default" i18nKey="a10050"
+		isSearchable="no" name="cpwrFilesHashAttrs" syntax="string" type="list">
+		<DefaultValues>
+			<Value>userPassword</Value>
+		</DefaultValues>
+	</AttributeSchema>
+	<AttributeSchema cosQualifier="default" i18nKey="a10060"
+		isSearchable="no" name="cpwrFilesEncryptAttrs" syntax="string" type="list">
+	</AttributeSchema>
+	<AttributeSchema cosQualifier="default" i18nKey="a10070"
+		isSearchable="no" name="cpwrJiraWebServiceEndpoint" syntax="string" type="single">
+		<DefaultValues>
+			<Value>http://stg-dynaweb.emea.cpwr.corp:8080/supportportal/rpc/soap/jirasoapservice-v2</Value>
+		</DefaultValues>
+	</AttributeSchema>
+	<AttributeSchema cosQualifier="default" i18nKey="a10080"
+		isSearchable="no" name="cpwrJiraAdminUser" syntax="string" type="single">
+		<DefaultValues>
+			<Value>admin</Value>
+		</DefaultValues>
+	</AttributeSchema>
+	<AttributeSchema cosQualifier="default" i18nKey="a10090"
+		isSearchable="no" name="cpwrJiraAdminPassword" syntax="password" type="single">
+		<DefaultValues>
+			<Value>sphere</Value>
+		</DefaultValues>
+	</AttributeSchema>
+</SubSchema>
