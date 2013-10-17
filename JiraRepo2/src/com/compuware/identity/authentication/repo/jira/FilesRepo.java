@@ -61,8 +61,10 @@ import com.sun.identity.sm.SchemaType;
  * 
  */
 public class FilesRepo extends IdRepo {
-    //private static final String CONFIG_FILE = "c:/data/openam.properties";
-    private static final String CONFIG_FILE = "/Users/bfhcpd0/projects/OTracker-Prototypes/JiraRepo2/openam.properties";
+    private static final int GET_ATTRIBUTE_RETRIES = 3;
+
+	private static final String CONFIG_FILE = "c:/data/openam.properties";
+    //private static final String CONFIG_FILE = "/Users/bfhcpd0/projects/OTracker-Prototypes/JiraRepo2/openam.properties";
 
 	// Class name
     public static final String NAME = 
@@ -545,64 +547,79 @@ public class FilesRepo extends IdRepo {
         }
        
         Map answer = new CaseInsensitiveHashMap();
-        int retry = 3;
-        LoginServiceToken adminToken = null;
+        if ("*".equals(name) || "ContainerDefaultTemplateRole".equals(name)) {
+        	return answer;
+        }
         try {
-        	adminToken = adminTokenManager.getToken();
-	        while (retry > 0) {
+            int attempt = 1;
+            LoginServiceToken adminToken = adminTokenManager.getToken();
+        	UserDetails user = null;
+	        while (true) {
 		        try {
-		    		UserDetails user = authPort.getUserDetails(adminToken.getToken(), name);
-		    		if (user != null) {
-		    			Set uid = new HashSet();
-		    			uid.add(name);
-		    			answer.put("uid", uid);
-		    			
-		    			Set mail = new HashSet();
-		    			mail.add(name);
-		    			answer.put("mail", mail);
-		    			
-		    			Set cn = new HashSet();
-		    			cn.add(user.getFullName());
-		    			answer.put("cn", cn);
-		    			
-		    			Set sn = new HashSet();
-		    			sn.add(user.getFirstName());
-		    			answer.put("sn", sn);
-		    			
-		    			Set givenName = new HashSet();
-		    			givenName.add(user.getLastName());
-		    			answer.put("givenname", givenName);
-
-		    			Set roles = new HashSet();
-		    			StringBuilder buf = new StringBuilder("");
-		    			boolean firstRole = true;
-		    			for (String role : user.getRoles()) {
-		    				if (firstRole) {
-		    					firstRole = false;
-		    				} else {
-		    					buf.append(",");
-		    				}
-		    				buf.append(role);
-		    			}
-		    			roles.add(buf.toString());
-		    			answer.put("roles", roles);
-		    			
-		    			Set userPassword = new HashSet();
-		    			userPassword.add("");
-		    			answer.put("userpassword", userPassword);
-		    			
-		    			Set inetUserStatus = new HashSet();
-		    			inetUserStatus.add("Active");
-		    			answer.put("inetuserstatus", inetUserStatus);
-		    			
-		    			answer.put(OC, userOCs);
-		    		}	
+		    		user = authPort.getUserDetails(adminToken.getToken(), name);
 		    		break;
-		        } catch (Exception ex) {		        		    
-	        		adminToken = adminTokenManager.refreshToken();
-	        	    retry --;	        	    		        
+		        } catch (Exception ex) {
+		        	if (attempt < GET_ATTRIBUTE_RETRIES) {
+	        		    adminToken = adminTokenManager.refreshToken();
+	        	        attempt++;
+		        	} else {
+		        		throw ex;
+		        	}
 		        }
 	        }
+
+	        if (user != null) {
+    			Set uid = new HashSet();
+    			uid.add(name);
+    			answer.put("uid", uid);
+    			
+    			Set mail = new HashSet();
+    			mail.add(name);
+    			answer.put("mail", mail);
+    			
+    			Set cn = new HashSet();
+    			cn.add(user.getFullName());
+    			answer.put("cn", cn);
+    			
+    			Set sn = new HashSet();
+    			sn.add(user.getFirstName());
+    			answer.put("sn", sn);
+    			
+    			Set givenName = new HashSet();
+    			givenName.add(user.getLastName());
+    			answer.put("givenname", givenName);
+
+    			Set roles = new HashSet();
+    			StringBuilder buf = new StringBuilder("");
+    			boolean firstRole = true;
+    			for (String role : user.getRoles()) {
+    				if (firstRole) {
+    					firstRole = false;
+    				} else {
+    					buf.append(",");
+    				}
+    				buf.append(role);
+    			}
+    			roles.add(buf.toString());
+    			answer.put("roles", roles);
+    			
+    			Set userPassword = new HashSet();
+    			userPassword.add("");
+    			answer.put("userpassword", userPassword);
+    			
+    			Set inetUserStatus = new HashSet();
+    			inetUserStatus.add("Active");
+    			answer.put("inetuserstatus", inetUserStatus);
+    			
+    			answer.put(OC, userOCs);
+    		} else {
+    			String message = String.format("FilesRepo: The auth web service returned a null value for user '%s'.", name);
+    			debug.error(message);
+    			throw new IdRepoException(message);
+    		}
+	        
+        } catch (IdRepoException ex) {
+        	throw ex;
         } catch (Exception ex) {
         	throw new IdRepoException(ex.getMessage());
         }
@@ -1311,6 +1328,10 @@ public class FilesRepo extends IdRepo {
             debug.error("FilesRepo: throwing initialization exception");
             throw (initializationException);
         }
+        
+        if ("*".equals(name)) {
+        	return;
+        }
 
         Map answer = getAttributes(token, type, name);
         if (answer == Collections.EMPTY_MAP) {
@@ -1526,11 +1547,15 @@ public class FilesRepo extends IdRepo {
         try {
     		String token = loginPort.login(username, password);
     		if (token == null) {
-    			throw new InvalidPasswordException("FilesRepo: The Eservices login web service returned a null token");
+    			throw new InvalidPasswordException(String.format("The Eservices login web service returned a null token for user '%s'", username));
+    		} else if (debug.messageEnabled()) {
+    			debug.message(String.format("FilesRepo: Authentication succeeded for user '%s'", username));
     		}
     		return (true);
         } catch (Exception ex) {
-        	throw new AuthLoginException(ex.getMessage(), ex);
+        	String message = "FilesRepo: " + ex.getMessage();
+			debug.error(message);
+        	throw new AuthLoginException(message, ex);
         }        
     }
     
