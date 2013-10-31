@@ -1,0 +1,2 @@
+wsimport -keep -verbose -d src -p com.compuware.identity.authentication.repo.jira.webservice.login loginwebservice.wsdl
+wsimport -keep -verbose -d src -p com.compuware.identity.authentication.repo.jira.webservice.auth authwebservice.wsdl
