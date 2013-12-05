@@ -114,7 +114,24 @@
         }
 
         if (!doRelayState) {
-            if (relayState != null && SAML2Utils.isRelayStateURLValid(request, relayState, SAML2Constants.IDP_ROLE)) {
+            // The following lines were added/changed by Carlos Devoto!
+            String serverName = request.getServerName();
+            StringBuilder domainNameBuf = new StringBuilder();
+            int separatorCount = 0;
+            for (int i = serverName.length() - 1; i >= 0; i--) {
+        	    char c = serverName.charAt(i);
+        	    if (c == '.') {
+        		    separatorCount++;
+        		    if (separatorCount > 1) {
+        			    break;
+        		    }
+        	    }
+    	        domainNameBuf.insert(0, c);
+            }
+            String domainName = domainNameBuf.toString().replace(".", "\\.");
+            String regEx = "(http|https)://.+" + domainName + "(:\\d+)?/.+";
+            if (relayState != null && (java.util.regex.Pattern.matches(regEx, relayState) || SAML2Utils.isRelayStateURLValid(request, relayState, SAML2Constants.IDP_ROLE))) {
+                // End of change by Carlos Devoto!
                 if (relayState.indexOf("?") != -1) {
                     response.sendRedirect(relayState 
                         + "&logoutStatus=logoutSuccess");
